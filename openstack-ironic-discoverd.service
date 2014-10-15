@@ -1,0 +1,10 @@
+[Unit]
+Description=Service for hardware discovery in OpenStack Ironic
+
+[Service]
+ExecStart=/usr/bin/ironic-discoverd /etc/ironic-discoverd/discoverd.conf
+User=root
+
+[Install]
+WantedBy=multi-user.target
+Alias=openstack-ironic-discoverd.service
