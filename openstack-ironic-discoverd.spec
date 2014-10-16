@@ -2,7 +2,7 @@
 
 Name:		openstack-ironic-discoverd
 Summary:	Hardware discovery daemon for OpenStack Ironic
-Version:	0.2.0
+Version:	0.2.1
 Release:	1%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
@@ -69,6 +69,9 @@ Simple hardware properties discovery daemon for use with OpenStack Ironic.
 
 
 %changelog
+
+* Thu Oct 16 2014 Dmitry Tantsur <dtantsur@redhat.com> - 0.2.1-1
+- Upstream bugfix release
 
 * Wed Oct 8 2014 Dmitry Tantsur <dtantsur@redhat.com> - 0.2.0-1
 - Initial package build
