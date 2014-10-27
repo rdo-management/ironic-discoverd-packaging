@@ -1,5 +1,5 @@
 [Unit]
-Description=Service for hardware discovery in OpenStack Ironic
+Description=Hardware properties discovery service for OpenStack Ironic
 
 [Service]
 ExecStart=/usr/bin/ironic-discoverd /etc/ironic-discoverd/discoverd.conf

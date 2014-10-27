@@ -1,9 +1,9 @@
 %{?!_licensedir:%global license %%doc}
 
 Name:		openstack-ironic-discoverd
-Summary:	Hardware discovery daemon for OpenStack Ironic
-Version:	0.2.1
-Release:	2%{?dist}
+Summary:	Hardware property discovery service for OpenStack Ironic
+Version:	0.2.2
+Release:	1%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		https://github.com/Divius/ironic-discoverd
@@ -78,6 +78,10 @@ Hardware properties discovery daemon for use with OpenStack Ironic.
 
 
 %changelog
+
+* Mon Oct 27 2014 Dmitry Tantsur <dtantsur@redhat.com> - 0.2.2-1
+- Upstream bugfix release 0.2.2
+- Sync all descriptions with upstream variant
 
 * Thu Oct 23 2014 Dmitry Tantsur <dtantsur@redhat.com> - 0.2.1-2
 - Require dnsmasq
