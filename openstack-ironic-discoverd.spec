@@ -2,11 +2,11 @@
 
 Name:		openstack-ironic-discoverd
 Summary:	Hardware property discovery service for OpenStack Ironic
-Version:	0.2.2
+Version:	0.2.4
 Release:	1%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
-URL:		https://github.com/Divius/ironic-discoverd
+URL:		https://pypi.python.org/pypi/ironic-discoverd
 
 Source0:	https://pypi.python.org/packages/source/i/ironic-discoverd/ironic-discoverd-%{version}.tar.gz
 Source1:	openstack-ironic-discoverd.service
@@ -52,7 +52,11 @@ install -p -D -m 644 %{SOURCE3} %{buildroot}/%{_sysconfdir}/ironic-discoverd/dns
 
 
 %description
-Hardware properties discovery daemon for use with OpenStack Ironic.
+This is an auxiliary service for discovering basic hardware properties for a
+node managed by OpenStack Ironic. Hardware introspection or hardware properties
+discovery is a process of getting hardware parameters required for scheduling
+from a bare metal node, given it's power management credentials (e.g. IPMI
+address, user name and password).
 
 %files
 %doc README.rst
@@ -78,6 +82,11 @@ Hardware properties discovery daemon for use with OpenStack Ironic.
 
 
 %changelog
+
+* Fri Nov 14 2014 Dmitry Tantsur <dtantsur@redhat.com> - 0.2.4-1
+- Upstream bugfix release 0.2.4
+  Only cosmetic code update, reflects move to StackForge and Launchpad.
+- Take description from upstream README.
 
 * Mon Oct 27 2014 Dmitry Tantsur <dtantsur@redhat.com> - 0.2.2-1
 - Upstream bugfix release 0.2.2
