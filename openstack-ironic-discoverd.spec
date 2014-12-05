@@ -2,7 +2,7 @@
 
 Name:		openstack-ironic-discoverd
 Summary:	Hardware property discovery service for OpenStack Ironic
-Version:	0.2.4
+Version:	0.2.5
 Release:	1%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
@@ -59,7 +59,7 @@ from a bare metal node, given it's power management credentials (e.g. IPMI
 address, user name and password).
 
 %files
-%doc README.rst
+%doc README.rst CONTRIBUTING.rst
 %license LICENSE
 %{python_sitelib}/ironic_discoverd*
 %config(noreplace) %attr(-,root,root) %{_sysconfdir}/ironic-discoverd
@@ -82,6 +82,10 @@ address, user name and password).
 
 
 %changelog
+
+* Thu Dec 4 2014 Dmitry Tantsur <dtantsur@redhat.com> - 0.2.5-1
+- Upstream bugfix release 0.2.5
+- Install CONTRIBUTING.rst
 
 * Fri Nov 14 2014 Dmitry Tantsur <dtantsur@redhat.com> - 0.2.4-1
 - Upstream bugfix release 0.2.4
