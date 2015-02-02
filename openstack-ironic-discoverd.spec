@@ -3,7 +3,7 @@
 Name:		openstack-ironic-discoverd
 Summary:	Hardware introspection service for OpenStack Ironic
 Version:	1.0.0
-Release:	0.10.20150122git%{?dist}
+Release:	0.13.20150202git%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		https://pypi.python.org/pypi/ironic-discoverd
@@ -73,6 +73,27 @@ This package contains Python modules and documentation.
 %doc README.rst CONTRIBUTING.rst
 %license LICENSE
 %{python_sitelib}/ironic_discoverd*
+%exclude %{python_sitelib}/ironic_discoverd/plugins/edeploy.py*
+
+
+%package -n python-ironic-discoverd-edeploy
+Summary: Hardware introspection service for OpenStack Ironic - eDeploy plugin
+Requires: python-ironic-discoverd >= 1.0.0-0.12
+#Requires: python-hardware  FIXME
+Conflicts: python-ironic-discoverd < 1.0.0-0.12
+
+%description -n python-ironic-discoverd-edeploy
+ironic-discoverd is a service for discovering hardware properties for a node
+managed by OpenStack Ironic. Hardware introspection or hardware properties
+discovery is a process of getting hardware parameters required for scheduling
+from a bare metal node, given it's power management credentials (e.g. IPMI
+address, user name and password).
+
+This package contains the eDeploy plugin.
+
+%files -n python-ironic-discoverd-edeploy
+%license LICENSE
+%{python_sitelib}/ironic_discoverd/plugins/edeploy.py*
 
 
 %description
@@ -107,8 +128,8 @@ This package contains main executable and service files.
 
 %changelog
 
-* Thu Jan 22 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.0.0-0.10.20150122git
-- Git snapshot f6b224186451ff612e2d1d2304b49bc30de85a3f
+* Mon Feb 2 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.0.0-0.13.20150202git
+- Git snapshot e8cb1a305f04223c0a8f39903e2c06a0a4f0d3d1
 - eDeploy plugin as a patch: https://review.openstack.org/#/c/146599/ (18)
 - Set default database location as a patch
 
