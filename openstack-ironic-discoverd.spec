@@ -3,7 +3,7 @@
 Name:		openstack-ironic-discoverd
 Summary:	Hardware introspection service for OpenStack Ironic
 Version:	1.0.0
-Release:	0.13.20150202git%{?dist}
+Release:	0.14.20150202git%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		https://pypi.python.org/pypi/ironic-discoverd
@@ -128,8 +128,8 @@ This package contains main executable and service files.
 
 %changelog
 
-* Mon Feb 2 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.0.0-0.13.20150202git
-- Git snapshot e8cb1a305f04223c0a8f39903e2c06a0a4f0d3d1
+* Mon Feb 2 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.0.0-0.14.20150202git
+- 1.0.0 final pre-release snapshot
 - eDeploy plugin as a patch: https://review.openstack.org/#/c/146599/ (18)
 - Set default database location as a patch
 
