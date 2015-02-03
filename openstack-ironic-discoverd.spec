@@ -3,7 +3,7 @@
 Name:		openstack-ironic-discoverd
 Summary:	Hardware introspection service for OpenStack Ironic
 Version:	1.0.0
-Release:	0.14.20150202git%{?dist}
+Release:	1.1.edeploy%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		https://pypi.python.org/pypi/ironic-discoverd
@@ -58,7 +58,7 @@ Requires: python-keystoneclient
 Requires: python-requests
 Requires: python-setuptools
 Requires: python-six
-Conflicts: openstack-ironic-discoverd < 1.0.0-0.10
+Conflicts: openstack-ironic-discoverd < 1.0.0-1
 
 %description -n python-ironic-discoverd
 ironic-discoverd is a service for discovering hardware properties for a node
@@ -78,9 +78,9 @@ This package contains Python modules and documentation.
 
 %package -n python-ironic-discoverd-edeploy
 Summary: Hardware introspection service for OpenStack Ironic - eDeploy plugin
-Requires: python-ironic-discoverd >= 1.0.0-0.12
 #Requires: python-hardware  FIXME
-Conflicts: python-ironic-discoverd < 1.0.0-0.12
+Requires: python-ironic-discoverd >= 1.0.0-1
+Conflicts: python-ironic-discoverd < 1.0.0-1
 
 %description -n python-ironic-discoverd-edeploy
 ironic-discoverd is a service for discovering hardware properties for a node
@@ -128,10 +128,13 @@ This package contains main executable and service files.
 
 %changelog
 
-* Mon Feb 2 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.0.0-0.14.20150202git
-- 1.0.0 final pre-release snapshot
+* Tue Feb 3 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.0.0-1.1.edeploy
 - eDeploy plugin as a patch: https://review.openstack.org/#/c/146599/ (18)
-- Set default database location as a patch
+
+* Tue Feb 3 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.0.0-1
+- New upstream release: 1.0.0
+- Set default database location to simplify upgrades
+- Split into two packages: the service and Python modules
 
 * Thu Dec 4 2014 Dmitry Tantsur <dtantsur@redhat.com> - 0.2.5-1
 - Upstream bugfix release 0.2.5
