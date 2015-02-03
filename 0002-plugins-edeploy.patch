@@ -1,4 +1,4 @@
-From 514aefa5f3d271acf3642b9f1dde71691aa04c1f Mon Sep 17 00:00:00 2001
+From 22a0e24efbef149377ea1e020f2d81968c10b58c Mon Sep 17 00:00:00 2001
 From: Frederic Lepied <frederic.lepied@enovance.com>
 Date: Fri, 5 Dec 2014 14:17:58 +0100
 Subject: [PATCH] Add eDeploy plugin
@@ -10,36 +10,42 @@ the configuration of the node.
 Change-Id: I11b4cf21ec81ce8efd3222597a5226fe260721e2
 Implements: blueprint edeploy
 ---
- README.rst                                    |    4 +
- ironic_discoverd/plugins/edeploy.py           |  105 +++++++++++++++++++++++++
- ironic_discoverd/test/test_plugins_edeploy.py |   72 +++++++++++++++++
+ README.rst                                    |    7 ++
+ ironic_discoverd/plugins/edeploy.py           |  110 +++++++++++++++++++++++++
+ ironic_discoverd/test/test_plugins_edeploy.py |   74 +++++++++++++++++
  setup.py                                      |    1 +
  test-requirements.txt                         |    1 +
- 5 files changed, 183 insertions(+)
+ 5 files changed, 193 insertions(+)
  create mode 100644 ironic_discoverd/plugins/edeploy.py
  create mode 100644 ironic_discoverd/test/test_plugins_edeploy.py
 
 diff --git a/README.rst b/README.rst
-index 0880b1f..89d59df 100644
+index a937e12..e388ab5 100644
 --- a/README.rst
 +++ b/README.rst
-@@ -355,6 +355,10 @@ Action recommended:
+@@ -322,9 +322,16 @@ See `1.1.0 release tracking page`_ for details.
  
-   See `setup-ipmi-credentials blueprint`_ for details.
+ **Other Changes**
  
 +* Experimental plugin ``edeploy`` to use with
 +  `eDeploy hardware detection and classification utilities
 +  <https://pypi.python.org/pypi/hardware>`_.
 +
- .. _1.0.0 release tracking page: https://bugs.launchpad.net/ironic-discoverd/+milestone/1.0.0
- .. _setup-ipmi-credentials blueprint: https://blueprints.launchpad.net/ironic-discoverd/+spec/setup-ipmi-credentials
- .. _plugin-architecture blueprint: https://blueprints.launchpad.net/ironic-discoverd/+spec/plugin-architecture
++  See `eDeploy blueprint`_ for details.
++
+ **Known Issues**
+ 
+ .. _1.1.0 release tracking page: https://bugs.launchpad.net/ironic-discoverd/+milestone/1.1.0
++.. _eDeploy blueprint: https://blueprints.launchpad.net/ironic-discoverd/+spec/edeploy
+ 
+ 1.0 Series
+ ~~~~~~~~~~
 diff --git a/ironic_discoverd/plugins/edeploy.py b/ironic_discoverd/plugins/edeploy.py
 new file mode 100644
-index 0000000..bf3b451
+index 0000000..a3a26eb
 --- /dev/null
 +++ b/ironic_discoverd/plugins/edeploy.py
-@@ -0,0 +1,105 @@
+@@ -0,0 +1,110 @@
 +# Licensed under the Apache License, Version 2.0 (the "License");
 +# you may not use this file except in compliance with the License.
 +# You may obtain a copy of the License at
@@ -53,7 +59,11 @@ index 0000000..bf3b451
 +# See the License for the specific language governing permissions and
 +# limitations under the License.
 +
-+"""eDeploy plugin."""
++"""eDeploy hardware detection and classification plugin.
++
++See https://blueprints.launchpad.net/ironic-discoverd/+spec/edeploy for
++details on how to use it. Note that this plugin requires a special ramdisk.
++"""
 +
 +import logging
 +
@@ -104,10 +114,11 @@ index 0000000..bf3b451
 +            var['profile'] = prof
 +            node_info['hardware'] = var
 +        except Exception as excpt:
-+            raise utils.Error(
++            LOG.warning(
 +                'Unable to find a matching hardware profile: %s' % excpt)
 +        finally:
 +            if sobj:
++                sobj.save()
 +                sobj.unlock()
 +        del node_info['data']
 +
@@ -147,10 +158,10 @@ index 0000000..bf3b451
 +            ], {}
 diff --git a/ironic_discoverd/test/test_plugins_edeploy.py b/ironic_discoverd/test/test_plugins_edeploy.py
 new file mode 100644
-index 0000000..c748d18
+index 0000000..eaf5372
 --- /dev/null
 +++ b/ironic_discoverd/test/test_plugins_edeploy.py
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,74 @@
 +# Licensed under the Apache License, Version 2.0 (the "License");
 +# you may not use this file except in compliance with the License.
 +# You may obtain a copy of the License at
@@ -219,10 +230,12 @@ index 0000000..c748d18
 +        node_info = {}
 +        self.assertRaises(utils.Error, hook.before_processing, node_info)
 +
-+    def test_hook_no_profile(self):
++    @mock.patch.object(edeploy, 'LOG')
++    def test_hook_no_profile(self, mock_log):
 +        hook = edeploy.eDeployHook()
 +        node_info = {'data': []}
-+        self.assertRaises(utils.Error, hook.before_processing, node_info)
++        hook.before_processing(node_info)
++        self.assertTrue(mock_log.warning.called)
 diff --git a/setup.py b/setup.py
 index fee597c..62c6092 100644
 --- a/setup.py
