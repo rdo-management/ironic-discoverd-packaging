@@ -3,7 +3,7 @@
 Name:		openstack-ironic-discoverd
 Summary:	Hardware introspection service for OpenStack Ironic
 Version:	1.1.0
-Release:	0.1.20150203git%{?dist}
+Release:	0.2.20150209git%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		https://pypi.python.org/pypi/ironic-discoverd
@@ -13,7 +13,6 @@ Source1:	openstack-ironic-discoverd.service
 Source2:	openstack-ironic-discoverd-dnsmasq.service
 Source3:	dnsmasq.conf
 Patch0:	0001-default-database-location.patch
-Patch1:	0002-plugins-edeploy.patch
 
 BuildArch:	noarch
 BuildRequires:	python-setuptools
@@ -59,6 +58,7 @@ Requires: python-requests
 Requires: python-setuptools
 Requires: python-six
 Conflicts: openstack-ironic-discoverd < 1.0.0-1
+Conflicts: python-ironic-discoverd-edeploy < 1.1.0-0.2
 
 %description -n python-ironic-discoverd
 ironic-discoverd is a service for discovering hardware properties for a node
@@ -73,27 +73,6 @@ This package contains Python modules and documentation.
 %doc README.rst CONTRIBUTING.rst
 %license LICENSE
 %{python_sitelib}/ironic_discoverd*
-%exclude %{python_sitelib}/ironic_discoverd/plugins/edeploy.py*
-
-
-%package -n python-ironic-discoverd-edeploy
-Summary: Hardware introspection service for OpenStack Ironic - eDeploy plugin
-#Requires: python-hardware  FIXME
-Requires: python-ironic-discoverd >= 1.0.0-1
-Conflicts: python-ironic-discoverd < 1.0.0-1
-
-%description -n python-ironic-discoverd-edeploy
-ironic-discoverd is a service for discovering hardware properties for a node
-managed by OpenStack Ironic. Hardware introspection or hardware properties
-discovery is a process of getting hardware parameters required for scheduling
-from a bare metal node, given it's power management credentials (e.g. IPMI
-address, user name and password).
-
-This package contains the eDeploy plugin.
-
-%files -n python-ironic-discoverd-edeploy
-%license LICENSE
-%{python_sitelib}/ironic_discoverd/plugins/edeploy.py*
 
 
 %description
@@ -128,8 +107,8 @@ This package contains main executable and service files.
 
 %changelog
 
-* Tue Feb 3 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.1.0-0.1.20150203git
-- eDeploy plugin as a patch: https://review.openstack.org/#/c/146599/ (21)
+* Tue Feb 3 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.1.0-0.2.20150209git
+- Upstream snapshot 2fbe520ba8db45e6ed76731ca8ae9252aa0f0e7e
 
 * Tue Feb 3 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.0.0-1
 - New upstream release: 1.0.0
