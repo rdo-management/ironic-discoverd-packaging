@@ -3,7 +3,7 @@
 Name:		openstack-ironic-discoverd
 Summary:	Hardware introspection service for OpenStack Ironic
 Version:	1.1.0
-Release:	0.5.20150212git%{?dist}
+Release:	0.6.20150217git%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		https://pypi.python.org/pypi/ironic-discoverd
@@ -58,7 +58,6 @@ Requires: python-requests
 Requires: python-setuptools
 Requires: python-six
 Conflicts: openstack-ironic-discoverd < 1.0.0-1
-Conflicts: python-ironic-discoverd-edeploy < 1.1.0-0.2
 
 %description -n python-ironic-discoverd
 ironic-discoverd is a service for discovering hardware properties for a node
@@ -107,8 +106,8 @@ This package contains main executable and service files.
 
 %changelog
 
-* Tue Feb 3 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.1.0-0.5.20150212git
-- Upstream snapshot e724de4dc616ca343e57d30d8ba2f2fa1d0c2b43
+* Tue Feb 3 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.1.0-0.6.20150217git
+- Upstream snapshot e1008ef8ef5dd78915b1cbfa7a250a237006438d
 
 * Tue Feb 3 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.0.0-1
 - New upstream release: 1.0.0
