@@ -30,10 +30,6 @@ Requires(postun): systemd
 
 rm -rf *.egg-info
 
-# Remove the requirements file so that pbr hooks don't add it
-# to distutils requires_dist config
-rm -rf {test-,}requirements.txt tools/{pip,test}-requires
-
 %build
 %{__python2} setup.py build
 
