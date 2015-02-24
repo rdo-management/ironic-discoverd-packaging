@@ -50,13 +50,19 @@ install -p -D -m 644 %{SOURCE3} %{buildroot}/%{_sysconfdir}/ironic-discoverd/dns
 
 %package -n python-ironic-discoverd
 Summary: Hardware introspection service for OpenStack Ironic - Python modules
-Requires: python-eventlet
-Requires: python-flask
-Requires: python-ironicclient
+# FIXME: this should be 0.16.1 once we make sure it's available
+Requires: python-eventlet >= 0.15.1
+Requires: python-flask >= 0.10
+# FIXME: not packaged yet
+# python-hardware >= 0.9
+Requires: python-ironicclient >= 0.2.1
+# FIXME: this should be >= 1.1.0
 Requires: python-keystoneclient
-Requires: python-requests
+Requires: python-oslo-i18n >= 1.3.0
+Requires: python-requests >= 2.2.0
 Requires: python-setuptools
-Requires: python-six
+Requires: python-six >= 1.7.0
+Requires: python-stevedore >= 1.1.0
 Conflicts: openstack-ironic-discoverd < 1.0.0-1
 
 %description -n python-ironic-discoverd
@@ -105,9 +111,6 @@ This package contains main executable and service files.
 
 
 %changelog
-
-* Tue Feb 3 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.1.0-0.6.20150217git
-- Upstream snapshot e1008ef8ef5dd78915b1cbfa7a250a237006438d
 
 * Tue Feb 3 2015 Dmitry Tantsur <dtantsur@redhat.com> - 1.0.0-1
 - New upstream release: 1.0.0
