@@ -57,8 +57,7 @@ Summary: Hardware introspection service for OpenStack Ironic - Python modules
 # FIXME: this should be 0.16.1 once we make sure it's available
 Requires: python-eventlet >= 0.15.1
 Requires: python-flask >= 0.10
-# FIXME: not packaged yet
-# python-hardware >= 0.9
+python-hardware >= 0.9
 Requires: python-ironicclient >= 0.2.1
 # FIXME: this should be >= 1.1.0
 Requires: python-keystoneclient
