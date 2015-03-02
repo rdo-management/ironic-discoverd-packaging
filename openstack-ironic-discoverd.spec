@@ -60,6 +60,7 @@ Requires: python-flask >= 0.10
 Requires: python-hardware >= 0.9
 Requires: python-ironicclient >= 0.2.1
 Requires: python-keystoneclient >= 1.1.0
+Requires: python-keystonemiddleware >= 1.0.0
 Requires: python-oslo-i18n >= 1.3.0
 Requires: python-oslo-utils >= 1.2.0
 Requires: python-requests >= 2.2.0
