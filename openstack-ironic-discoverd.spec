@@ -54,6 +54,8 @@ install -p -D -m 644 %{SOURCE3} %{buildroot}/%{_sysconfdir}/ironic-discoverd/dns
 
 %package -n python-ironic-discoverd
 Summary: Hardware introspection service for OpenStack Ironic - Python modules
+Requires: python-babel >= 1.3
+Requires: python-cliff >= 1.7.0
 # FIXME: this should be 0.16.1 once we make sure it's available
 Requires: python-eventlet >= 0.15.1
 Requires: python-flask >= 0.10
@@ -63,6 +65,7 @@ Requires: python-keystoneclient >= 1.1.0
 Requires: python-keystonemiddleware >= 1.0.0
 Requires: python-oslo-i18n >= 1.3.0
 Requires: python-oslo-utils >= 1.2.0
+Requires: python-openstackclient >= 1.0.0
 Requires: python-requests >= 2.2.0
 Requires: python-setuptools
 Requires: python-six >= 1.7.0
