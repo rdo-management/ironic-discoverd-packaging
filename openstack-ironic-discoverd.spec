@@ -86,6 +86,27 @@ This package contains Python modules and documentation.
 %doc README.rst CONTRIBUTING.rst
 %license LICENSE
 %{python_sitelib}/ironic_discoverd*
+%exclude %{python_sitelib}/ironic_discoverd_ramdisk*
+
+%package -n openstack-ironic-discoverd-ramdisk
+Summary: Hardware introspection service for OpenStack Ironic - ramdisk script
+Requires: python-hardware
+Requires: python-netifaces
+Requires: python-requests
+
+%description -n openstack-ironic-discoverd-ramdisk
+ironic-discoverd is a service for discovering hardware properties for a node
+managed by OpenStack Ironic. Hardware introspection or hardware properties
+discovery is a process of getting hardware parameters required for scheduling
+from a bare metal node, given it's power management credentials (e.g. IPMI
+address, user name and password).
+
+This package contains ramdisk implementation in Python.
+
+%files -n openstack-ironic-discoverd-ramdisk
+%license LICENSE
+%{python_sitelib}/ironic_discoverd_ramdisk*
+%{_bindir}/ironic-discoverd-ramdisk
 
 
 %description
